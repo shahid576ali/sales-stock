@@ -1,0 +1,15 @@
+@keyframes slideDown {
+    0% {
+      transform: translateY(-80%);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .animate-slide-down {
+    animation: slideDown .8s ease-out;
+    z-index: 99;
+  }
