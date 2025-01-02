@@ -31,7 +31,7 @@ const Navbar = () => {
         <div className=" flex w-[80%] gap-2 border sm:w-[350px] border-gray-400 lg:h-10 h-8 rounded-[12px] px-1 items-center ">
           <SearchIcon className="pl-2" color="grey" size={"27px"} />
           <input
-            className="w-full outline-none border-none h-[90%] bg-[#f5f5f5] rounded"
+            className="w-full outline-none border-none h-[90%] bg-[#fdfdfd] rounded"
             type="text"
             placeholder="Search here..."
           />

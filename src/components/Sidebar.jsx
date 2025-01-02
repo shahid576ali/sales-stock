@@ -35,7 +35,7 @@ const Sidebar = () => {
         </a>
         <a href="#" className="hover:text-orange-400 flex w-full bg text-gray-500 gap-6">
           <ShoppingCartIcon />
-          {!sidebar && <p className="hover:text-black">Products</p>}
+          {!sidebar && <p>Products</p>}
         </a>
         <a href="#" className="hover:text-orange-400 flex w-full text-gray-500 gap-6">
           <Copy />
