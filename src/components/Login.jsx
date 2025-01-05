@@ -1,5 +1,5 @@
 import countries from '@/assets/images/country'
-import { Eye, EyeClosed, EyeOff } from 'lucide-react'
+import { Eye, EyeOff } from 'lucide-react'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -27,9 +27,7 @@ const Login = () => {
             <input className='mt-1' type="checkbox" name="remember" />
             <p>Remember Me</p>
             </div>
-
             <a className='text-blue-500 text-right' href="#">Forgot Password?</a>
-
             <button className='text-white w-20 py-[6px] rounded-[6px] bg-blue-400' >Sign In</button>
             <p>Create an Account <Link to={"/signup"} className='text-blue-500' href="#">Sign Up</Link></p>
         </form>
