@@ -1,350 +1,148 @@
-import { AlignRight, Bell, Mail, SearchIcon } from "lucide-react";
-import React, { useState } from "react";
-import Sidebar from "./Sidebar";
-import NewTask from "./NewTask";
-import Profile from "./Profile";
+import React from 'react';
 
-const Dashbaord = () => {
-    return (
-        <div>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="d-flex flex-wrap flex-wrap align-items-center justify-content-between mb-4">
-                            <div>
-                                <h4 class="mb-3">Product List</h4>
-                                <p class="mb-0">The product list effectively dictates product presentation and provides space<br /> to list your products and offering in the most appealing way.</p>
-                            </div>
-                            <a href="page-add-product.html" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Add Product</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="table-responsive rounded mb-3">
-                            <table class="data-tables table mb-0 tbl-server-info">
-                                <thead class="bg-white text-uppercase">
-                                    <tr class="ligth ligth-data">
-                                        <th>
-                                            <div class="checkbox d-inline-block">
-                                                <input type="checkbox" class="checkbox-input" id="checkbox1" />
-                                                    <label for="checkbox1" class="mb-0"></label>
-                                            </div>
-                                        </th>
-                                        <th>Product</th>
-                                        <th>Code</th>
-                                        <th>Category</th>
-                                        <th>Price</th>
-                                        <th>Brand Name</th>
-                                        <th>Cost</th>
-                                        <th>Quantity</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="ligth-body">
-                                    <tr>
-                                        <td>
-                                            <div class="checkbox d-inline-block">
-                                                <input type="checkbox" class="checkbox-input" id="checkbox2" />
-                                                    <label for="checkbox2" class="mb-0"></label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <img src="../assets/images/table/product/01.jpg" class="img-fluid rounded avatar-50 mr-3" alt="image" />
-                                                    <div>
-                                                        Organic Cream
-                                                        <p class="mb-0"><small>This is test Product</small></p>
-                                                    </div>
-                                            </div>
-                                        </td>
-                                        <td>CREM01</td>
-                                        <td>Beauty</td>
-                                        <td>$25.00</td>
-                                        <td>Lakme</td>
-                                        <td>$10.00</td>
-                                        <td>10.0</td>
-                                        <td>
-                                            <div class="d-flex align-items-center list-action">
-                                                <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
-                                                    href="#"><i class="ri-eye-line mr-0"></i></a>
-                                                <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
-                                                    href="#"><i class="ri-pencil-line mr-0"></i></a>
-                                                <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
-                                                    href="#"><i class="ri-delete-bin-line mr-0"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="checkbox d-inline-block">
-                                                <input type="checkbox" class="checkbox-input" id="checkbox3" />
-                                                    <label for="checkbox3" class="mb-0"></label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <img src="../assets/images/table/product/02.jpg" class="img-fluid rounded avatar-50 mr-3" alt="image" />
-                                                    <div>
-                                                        Rain Umbrella
-                                                        <p class="mb-0"><small>This is test Product</small></p>
-                                                    </div>
-                                            </div>
-                                        </td>
-                                        <td>UM01</td>
-                                        <td>Grocery</td>
-                                        <td>$30.00</td>
-                                        <td>Sun</td>
-                                        <td>$20.00</td>
-                                        <td>15.0</td>
-                                        <td>
-                                            <div class="d-flex align-items-center list-action">
-                                                <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
-                                                    href="#"><i class="ri-eye-line mr-0"></i></a>
-                                                <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
-                                                    href="#"><i class="ri-pencil-line mr-0"></i></a>
-                                                <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
-                                                    href="#"><i class="ri-delete-bin-line mr-0"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="checkbox d-inline-block">
-                                                <input type="checkbox" class="checkbox-input" id="checkbox4" />
-                                                    <label for="checkbox4" class="mb-0"></label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <img src="../assets/images/table/product/03.jpg" class="img-fluid rounded avatar-50 mr-3" alt="image" />
-                                                    <div>
-                                                        Serum Bottle
-                                                        <p class="mb-0"><small>This is test Product</small></p>
-                                                    </div>
-                                            </div>
-                                        </td>
-                                        <td>SEM01</td>
-                                        <td>Beauty</td>
-                                        <td>$50.00</td>
-                                        <td>Blushing</td>
-                                        <td>$25.00</td>
-                                        <td>50.0</td>
-                                        <td>
-                                            <div class="d-flex align-items-center list-action">
-                                                <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
-                                                    href="#"><i class="ri-eye-line mr-0"></i></a>
-                                                <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
-                                                    href="#"><i class="ri-pencil-line mr-0"></i></a>
-                                                <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
-                                                    href="#"><i class="ri-delete-bin-line mr-0"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="checkbox d-inline-block">
-                                                <input type="checkbox" class="checkbox-input" id="checkbox5" />
-                                                    <label for="checkbox5" class="mb-0"></label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <img src="../assets/images/table/product/04.jpg" class="img-fluid rounded avatar-50 mr-3" alt="image" />
-                                                    <div>
-                                                        Coffee Beans
-                                                        <p class="mb-0"><small>This is test Product</small></p>
-                                                    </div>
-                                            </div>
-                                        </td>
-                                        <td>COF01</td>
-                                        <td>Food</td>
-                                        <td>$32.00</td>
-                                        <td>Nescafe</td>
-                                        <td>$20.00</td>
-                                        <td>50.0</td>
-                                        <td>
-                                            <div class="d-flex align-items-center list-action">
-                                                <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
-                                                    href="#"><i class="ri-eye-line mr-0"></i></a>
-                                                <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
-                                                    href="#"><i class="ri-pencil-line mr-0"></i></a>
-                                                <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
-                                                    href="#"><i class="ri-delete-bin-line mr-0"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="checkbox d-inline-block">
-                                                <input type="checkbox" class="checkbox-input" id="checkbox6" />
-                                                    <label for="checkbox6" class="mb-0"></label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <img src="../assets/images/table/product/05.jpg" class="img-fluid rounded avatar-50 mr-3" alt="image" />
-                                                    <div>
-                                                        Book Shelves
-                                                        <p class="mb-0"><small>This is test Product</small></p>
-                                                    </div>
-                                            </div>
-                                        </td>
-                                        <td>FUN01</td>
-                                        <td>Furniture</td>
-                                        <td>$30.00</td>
-                                        <td>Vintage</td>
-                                        <td>$30.00</td>
-                                        <td>25.0</td>
-                                        <td>
-                                            <div class="d-flex align-items-center list-action">
-                                                <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
-                                                    href="#"><i class="ri-eye-line mr-0"></i></a>
-                                                <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
-                                                    href="#"><i class="ri-pencil-line mr-0"></i></a>
-                                                <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
-                                                    href="#"><i class="ri-delete-bin-line mr-0"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="checkbox d-inline-block">
-                                                <input type="checkbox" class="checkbox-input" id="checkbox7" />
-                                                    <label for="checkbox7" class="mb-0"></label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <img src="../assets/images/table/product/06.jpg" class="img-fluid rounded avatar-50 mr-3" alt="image" />
-                                                    <div>
-                                                        Dinner Set
-                                                        <p class="mb-0"><small>This is test Product</small></p>
-                                                    </div>
-                                            </div>
-                                        </td>
-                                        <td>DIS01</td>
-                                        <td>Grocery</td>
-                                        <td>$30.00</td>
-                                        <td>Rancher's</td>
-                                        <td>$20.00</td>
-                                        <td>50.0</td>
-                                        <td>
-                                            <div class="d-flex align-items-center list-action">
-                                                <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
-                                                    href="#"><i class="ri-eye-line mr-0"></i></a>
-                                                <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
-                                                    href="#"><i class="ri-pencil-line mr-0"></i></a>
-                                                <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
-                                                    href="#"><i class="ri-delete-bin-line mr-0"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="checkbox d-inline-block">
-                                                <input type="checkbox" class="checkbox-input" id="checkbox8" />
-                                                    <label for="checkbox8" class="mb-0"></label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <img src="../assets/images/table/product/07.jpg" class="img-fluid rounded avatar-50 mr-3" alt="image" />
-                                                    <div>
-                                                        Nike Shoes
-                                                        <p class="mb-0"><small>This is test Product</small></p>
-                                                    </div>
-                                            </div>
-                                        </td>
-                                        <td>NIS01</td>
-                                        <td>Shoes</td>
-                                        <td>$78.00</td>
-                                        <td>Nike</td>
-                                        <td>$50.00</td>
-                                        <td>100.0</td>
-                                        <td>
-                                            <div class="d-flex align-items-center list-action">
-                                                <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
-                                                    href="#"><i class="ri-eye-line mr-0"></i></a>
-                                                <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
-                                                    href="#"><i class="ri-pencil-line mr-0"></i></a>
-                                                <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
-                                                    href="#"><i class="ri-delete-bin-line mr-0"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="checkbox d-inline-block">
-                                                <input type="checkbox" class="checkbox-input" id="checkbox9" />
-                                                    <label for="checkbox9" class="mb-0"></label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <img src="../assets/images/table/product/08.jpg" class="img-fluid rounded avatar-50 mr-3" alt="image" />
-                                                    <div>
-                                                        Computer Glasses
-                                                        <p class="mb-0"><small>This is test Product</small></p>
-                                                    </div>
-                                            </div>
-                                        </td>
-                                        <td>COG01</td>
-                                        <td>Frames</td>
-                                        <td>$25.00</td>
-                                        <td>Ray-Ban</td>
-                                        <td>$20.00</td>
-                                        <td>30.0</td>
-                                        <td>
-                                            <div class="d-flex align-items-center list-action">
-                                                <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
-                                                    href="#"><i class="ri-eye-line mr-0"></i></a>
-                                                <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
-                                                    href="#"><i class="ri-pencil-line mr-0"></i></a>
-                                                <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
-                                                    href="#"><i class="ri-delete-bin-line mr-0"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="checkbox d-inline-block">
-                                                <input type="checkbox" class="checkbox-input" id="checkbox10" />
-                                                    <label for="checkbox10" class="mb-0"></label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <img src="../assets/images/table/product/09.jpg" class="img-fluid rounded avatar-50 mr-3" alt="image" />
-                                                    <div>
-                                                        Alloy Jewel Set
-                                                        <p class="mb-0"><small>This is test Product</small></p>
-                                                    </div>
-                                            </div>
-                                        </td>
-                                        <td>AJS01</td>
-                                        <td>Jewellery</td>
-                                        <td>$150.00</td>
-                                        <td>Jazzin</td>
-                                        <td>$50.00</td>
-                                        <td>200.0</td>
-                                        <td>
-                                            <div class="d-flex align-items-center list-action">
-                                                <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
-                                                    href="#"><i class="ri-eye-line mr-0"></i></a>
-                                                <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
-                                                    href="#"><i class="ri-pencil-line mr-0"></i></a>
-                                                <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
-                                                    href="#"><i class="ri-delete-bin-line mr-0"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+const ProductList = () => {
+  return (
+    <div className="flex">
+      {/* Sidebar Placeholder */}
+      <aside className="w-16  min-h-screen ">
+        {/* Sidebar content */}
+      </aside>
+
+      {/* Main Content */}
+      <div className="flex-1  min-h-screen">
+        {/* Top Navbar Placeholder */}
+        <header className="p-8">
+          
+        </header>
+
+        {/* Main Content Area */}
+        <main className="container mx-auto px-6 py-8">
+          <div className="bg-white shadow rounded-lg p-6">
+            <h2 className="text-2xl font-semibold mb-4">
+              Product List
+            </h2>
+            <p className="text-gray-600 mb-6">
+              The product list effectively dictates product presentation and
+              provides space to list your products and offerings in the most
+              appealing way.
+            </p>
+
+            {/* Filters */}
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center">
+                <label htmlFor="entries" className="text-gray-700 mr-2">
+                  Show
+                </label>
+                <select
+                  id="entries"
+                  className="border rounded-md py-1 px-3 text-gray-700"
+                >
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                  <option value="30">30</option>
+                </select>
+                <span className="ml-2 text-gray-700">entries</span>
+              </div>
+              <input
+                type="text"
+                placeholder="Search..."
+                className="border rounded-md py-1 px-3 text-gray-700"
+              />
             </div>
-        </div>
-    );
+
+            {/* Table */}
+            <div className="overflow-x-auto">
+              <table className="min-w-full bg-white">
+                <thead>
+                  <tr className="text-left border-b">
+                    <th className="py-3 px-4">Product</th>
+                    <th className="py-3 px-4">Code</th>
+                    <th className="py-3 px-4">Category</th>
+                    <th className="py-3 px-4">Price</th>
+                    <th className="py-3 px-4">Brand Name</th>
+                    <th className="py-3 px-4">Cost</th>
+                    <th className="py-3 px-4">Quantity</th>
+                    <th className="py-3 px-4">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b hover:bg-gray-100">
+                    <td className="py-3 px-4 flex items-center">
+                      <img
+                        src="https://via.placeholder.com/50"
+                        alt="Organic Cream"
+                        className="w-10 h-10 rounded-full mr-4"
+                      />
+                      <div>
+                        <p className="font-semibold">Organic Cream</p>
+                        <p className="text-gray-600 text-sm">
+                          This is test Product
+                        </p>
+                      </div>
+                    </td>
+                    <td className="py-3 px-4">CREM01</td>
+                    <td className="py-3 px-4">Beauty</td>
+                    <td className="py-3 px-4">$25.00</td>
+                    <td className="py-3 px-4">Lakme</td>
+                    <td className="py-3 px-4">$10.00</td>
+                    <td className="py-3 px-4">10.0</td>
+                    <td className="py-3 px-4 flex items-center space-x-2">
+                      <button className="text-blue-600 hover:underline">
+                        View
+                      </button>
+                      <button className="text-green-600 hover:underline">
+                        Edit
+                      </button>
+                      <button className="text-red-600 hover:underline">
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                  <tr className="border-b hover:bg-gray-100">
+                    <td className="py-3 px-4 flex items-center">
+                      <img
+                        src="https://via.placeholder.com/50"
+                        alt="Rain Umbrella"
+                        className="w-10 h-10 rounded-full mr-4"
+                      />
+                      <div>
+                        <p className="font-semibold">Rain Umbrella</p>
+                        <p className="text-gray-600 text-sm">
+                          This is test Product
+                        </p>
+                      </div>
+                    </td>
+                    <td className="py-3 px-4">UM01</td>
+                    <td className="py-3 px-4">Grocery</td>
+                    <td className="py-3 px-4">$30.00</td>
+                    <td className="py-3 px-4">Sun</td>
+                    <td className="py-3 px-4">$20.00</td>
+                    <td className="py-3 px-4">15.0</td>
+                    <td className="py-3 px-4 flex items-center space-x-2">
+                      <button className="text-blue-600 hover:underline">
+                        View
+                      </button>
+                      <button className="text-green-600 hover:underline">
+                        Edit
+                      </button>
+                      <button className="text-red-600 hover:underline">
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div className="mt-6">
+              <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+                + Add Product
+              </button>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  );
 };
 
-export default Dashbaord;
+export default ProductList;

@@ -1,224 +1,149 @@
-import React from "react";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesomeIcon
+import { faEye, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'; // Import specific icons
 
-const Home = () => {
+
+const ProductList = () => {
   return (
-    <div className="flex items-center justify-center h-screen w-full">
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-lg-12">
-            <div className="d-flex flex-wrap align-items-center justify-content-between mb-4">
-              <div>
-                <h4 className="mb-3">Product List</h4>
-                <p className="mb-0">
-                  The product list effectively dictates product presentation and provides space
-                  <br />
-                  to list your products and offering in the most appealing way.
-                </p>
-              </div>
-              <a href="page-add-product.html" className="btn btn-primary add-list">
-                <i className="las la-plus mr-3"></i>Add Product
-              </a>
+    <div className="flex">
+      {/* Sidebar Placeholder */}
+      <aside className="w-16 min-h-screen hidden md:block">
+        {/* Sidebar content */}
+      </aside>
+
+      {/* Main Content */}
+      <div className="flex-1 bg-gray-100 min-h-screen">
+        {/* Top Navbar Placeholder */}
+        <header className="p-8">{/* Navbar content */}</header>
+
+        {/* Main Content Area */}
+        <main className="container mx-auto px-6 py-8">
+          <div className="bg-white shadow rounded-lg p-6">
+            {/* Header with Title and Add Button */}
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-2xl font-semibold">Product List</h2>
+              <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+                + Add Product
+              </button>
             </div>
-          </div>
-          <div className="col-lg-12">
-            <div className="table-responsive rounded mb-3">
-              <table className="data-tables table mb-0 tbl-server-info">
-                <thead className="bg-white text-uppercase">
-                  <tr className="ligth ligth-data">
-                    <th>
-                      <div className="checkbox d-inline-block">
-                        <input type="checkbox" className="checkbox-input" id="checkbox1" />
-                        <label htmlFor="checkbox1" className="mb-0"></label>
-                      </div>
-                    </th>
-                    <th>Product</th>
-                    <th>Code</th>
-                    <th>Category</th>
-                    <th>Price</th>
-                    <th>Brand Name</th>
-                    <th>Cost</th>
-                    <th>Quantity</th>
-                    <th>Action</th>
+
+            <p className="text-gray-600 mb-6">
+              The product list effectively dictates product presentation and
+              provides space to list your products and offerings in the most
+              appealing way.
+            </p>
+
+            {/* Filters */}
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center">
+                <label htmlFor="entries" className="text-gray-700 mr-2">
+                  Show
+                </label>
+                <select
+                  id="entries"
+                  className="border rounded-md py-1 px-3 text-gray-700"
+                >
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                  <option value="30">30</option>
+                </select>
+                <span className="ml-2 text-gray-700">entries</span>
+              </div>
+              <input
+                type="text"
+                placeholder="Search..."
+                className="border rounded-md py-1 px-3 text-gray-700"
+              />
+            </div>
+
+            {/* Table */}
+            <div className="overflow-x-auto">
+              <table className="min-w-full bg-white">
+                <thead>
+                  <tr className="text-left border-b">
+                    <th className="py-3 px-4">Product</th>
+                    <th className="py-3 px-4">Code</th>
+                    <th className="py-3 px-4">Category</th>
+                    <th className="py-3 px-4">Price</th>
+                    <th className="py-3 px-4">Brand Name</th>
+                    <th className="py-3 px-4">Cost</th>
+                    <th className="py-3 px-4">Quantity</th>
+                    <th className="py-3 px-4">Action</th>
                   </tr>
                 </thead>
-                <tbody className="ligth-body">
-                  {/* Example Row */}
-                  <tr>
-                    <td>
-                      <div className="checkbox d-inline-block">
-                        <input type="checkbox" className="checkbox-input" id="checkbox2" />
-                        <label htmlFor="checkbox2" className="mb-0"></label>
+                <tbody>
+                  <tr className="border-b hover:bg-gray-100">
+                    <td className="py-3 px-4 flex items-center">
+                      <img
+                        src="https://via.placeholder.com/50"
+                        alt="Organic Cream"
+                        className="w-10 h-10 rounded-full mr-4"
+                      />
+                      <div>
+                        <p className="font-semibold">Organic Cream</p>
+                        <p className="text-gray-600 text-sm">
+                          This is test Product
+                        </p>
                       </div>
                     </td>
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <img
-                          src="../assets/images/table/product/01.jpg"
-                          className="img-fluid rounded avatar-50 mr-3"
-                          alt="image"
-                        />
-                        <div>
-                          Organic Cream
-                          <p className="mb-0">
-                            <small>This is test Product</small>
-                          </p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>CREM01</td>
-                    <td>Beauty</td>
-                    <td>$25.00</td>
-                    <td>Lakme</td>
-                    <td>$10.00</td>
-                    <td>10.0</td>
-                    <td>
-                      <div className="d-flex align-items-center list-action">
-                        <a className="badge badge-info mr-2" href="#">
-                          <i className="ri-eye-line mr-0"></i>
-                        </a>
-                        <a className="badge bg-success mr-2" href="#">
-                          <i className="ri-pencil-line mr-0"></i>
-                        </a>
-                        <a className="badge bg-warning mr-2" href="#">
-                          <i className="ri-delete-bin-line mr-0"></i>
-                        </a>
-                      </div>
+                    <td className="py-3 px-4">CREM01</td>
+                    <td className="py-3 px-4">Beauty</td>
+                    <td className="py-3 px-4">$25.00</td>
+                    <td className="py-3 px-4">Lakme</td>
+                    <td className="py-3 px-4">$10.00</td>
+                    <td className="py-3 px-4">10.0</td>
+                    <td className="py-3 px-4 flex items-center space-x-2">
+                      <button className="text-blue-600 hover:underline">
+                      <FontAwesomeIcon icon={faEye} className="mr-1" />
+                      </button>
+                      <button className="text-green-600 hover:underline">
+                      <FontAwesomeIcon icon={faEdit} className="mr-1" />
+                      </button>
+                      <button className="text-red-600 hover:underline">
+                      <FontAwesomeIcon icon={faTrash} className="mr-1" />
+                      </button>
                     </td>
                   </tr>
-                  <tr>
-                    <td>
-                      <div className="checkbox d-inline-block">
-                        <input type="checkbox" className="checkbox-input" id="checkbox2" />
-                        <label htmlFor="checkbox2" className="mb-0"></label>
+                  <tr className="border-b hover:bg-gray-100">
+                    <td className="py-3 px-4 flex items-center">
+                      <img
+                        src="https://via.placeholder.com/50"
+                        alt="Rain Umbrella"
+                        className="w-10 h-10 rounded-full mr-4"
+                      />
+                      <div>
+                        <p className="font-semibold">Rain Umbrella</p>
+                        <p className="text-gray-600 text-sm">
+                          This is test Product
+                        </p>
                       </div>
                     </td>
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <img
-                          src="../assets/images/table/product/01.jpg"
-                          className="img-fluid rounded avatar-50 mr-3"
-                          alt="image"
-                        />
-                        <div>
-                          Organic Cream
-                          <p className="mb-0">
-                            <small>This is test Product</small>
-                          </p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>CREM01</td>
-                    <td>Beauty</td>
-                    <td>$25.00</td>
-                    <td>Lakme</td>
-                    <td>$10.00</td>
-                    <td>10.0</td>
-                    <td>
-                      <div className="d-flex align-items-center list-action">
-                        <a className="badge badge-info mr-2" href="#">
-                          <i className="ri-eye-line mr-0"></i>
-                        </a>
-                        <a className="badge bg-success mr-2" href="#">
-                          <i className="ri-pencil-line mr-0"></i>
-                        </a>
-                        <a className="badge bg-warning mr-2" href="#">
-                          <i className="ri-delete-bin-line mr-0"></i>
-                        </a>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div className="checkbox d-inline-block">
-                        <input type="checkbox" className="checkbox-input" id="checkbox2" />
-                        <label htmlFor="checkbox2" className="mb-0"></label>
-                      </div>
-                    </td>
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <img
-                          src="../assets/images/table/product/01.jpg"
-                          className="img-fluid rounded avatar-50 mr-3"
-                          alt="image"
-                        />
-                        <div>
-                          Organic Cream
-                          <p className="mb-0">
-                            <small>This is test Product</small>
-                          </p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>CREM01</td>
-                    <td>Beauty</td>
-                    <td>$25.00</td>
-                    <td>Lakme</td>
-                    <td>$10.00</td>
-                    <td>10.0</td>
-                    <td>
-                      <div className="d-flex align-items-center list-action">
-                        <a className="badge badge-info mr-2" href="#">
-                          <i className="ri-eye-line mr-0"></i>
-                        </a>
-                        <a className="badge bg-success mr-2" href="#">
-                          <i className="ri-pencil-line mr-0"></i>
-                        </a>
-                        <a className="badge bg-warning mr-2" href="#">
-                          <i className="ri-delete-bin-line mr-0"></i>
-                        </a>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div className="checkbox d-inline-block">
-                        <input type="checkbox" className="checkbox-input" id="checkbox2" />
-                        <label htmlFor="checkbox2" className="mb-0"></label>
-                      </div>
-                    </td>
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <img
-                          src="../assets/images/table/product/01.jpg"
-                          className="img-fluid rounded avatar-50 mr-3"
-                          alt="image"
-                        />
-                        <div>
-                          Organic Cream
-                          <p className="mb-0">
-                            <small>This is test Product</small>
-                          </p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>CREM01</td>
-                    <td>Beauty</td>
-                    <td>$25.00</td>
-                    <td>Lakme</td>
-                    <td>$10.00</td>
-                    <td>10.0</td>
-                    <td>
-                      <div className="d-flex align-items-center list-action">
-                        <a className="badge badge-info mr-2" href="#">
-                          <i className="ri-eye-line mr-0"></i>
-                        </a>
-                        <a className="badge bg-success mr-2" href="#">
-                          <i className="ri-pencil-line mr-0"></i>
-                        </a>
-                        <a className="badge bg-warning mr-2" href="#">
-                          <i className="ri-delete-bin-line mr-0"></i>
-                        </a>
-                      </div>
+                    <td className="py-3 px-4">UM01</td>
+                    <td className="py-3 px-4">Grocery</td>
+                    <td className="py-3 px-4">$30.00</td>
+                    <td className="py-3 px-4">Sun</td>
+                    <td className="py-3 px-4">$20.00</td>
+                    <td className="py-3 px-4">15.0</td>
+                    <td className="py-3 px-4 flex items-center space-x-2">
+                      <button className="text-blue-600 hover:underline">
+                      <FontAwesomeIcon icon={faEye} className="mr-1" />
+                      </button>
+                      <button className="text-green-600 hover:underline">
+                      <FontAwesomeIcon icon={faEdit} className="mr-1" />
+                      </button>
+                      <button className="text-red-600 hover:underline">
+                      <FontAwesomeIcon icon={faTrash} className="mr-1" />
+                      </button>
                     </td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </div>
-        </div>
+        </main>
       </div>
     </div>
   );
 };
 
-export default Home;
+export default ProductList;
