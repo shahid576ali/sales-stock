@@ -10,4 +10,7 @@ export default defineConfig({
     },
   },
   base: "/sales-stock/",
+  build: {
+    outDir: 'dist',  // Ensure the output folder is set to 'dist'
+  },
 })
