@@ -1,0 +1,49 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3  # v3 is fine for checkout, as it is the latest stable version
+
+      - name: Setup Node
+        uses: actions/setup-node@v3  # v3 is still the latest stable version
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1  # npm-install v1 is fine for installing dependencies
+
+      - name: Build project
+        run: npm run build  # Running npm build to generate dist folder
+
+      - name: Upload production-ready build files
+        uses: actions/upload-artifact@v4  # Updated to v4 to avoid deprecation
+        with:
+          name: production-files
+          path: ./dist  # Uploads the 'dist' folder as the artifact
+
+  deploy:
+    name: Deploy
+    needs: build  # Ensures deployment happens after build is successful
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'  # This ensures deploy only runs on main branch
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4  # Updated to v4 for artifact downloading
+        with:
+          name: production-files
+          path: ./dist  # Downloads the production files into the 'dist' folder
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3  # peaceiris/actions-gh-pages v3 is still the latest
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # Auth for GitHub Pages deployment
+          publish_dir: ./dist  # Specifies the folder to deploy (dist)

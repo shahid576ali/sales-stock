@@ -20,6 +20,7 @@ const Profile = () => {
   return (
     <div className="h-[390px] flex flex-col items-center right-2 rounded-md fixed top-36 w-[300px] bg-[#fdfdfd] shadow-md lg:top-[80px] animate-slide-down">
       <ToastContainer />
+    <div className="h-[390px] flex flex-col items-center right-2 rounded-md fixed top-36 w-[300px] bg-white shadow-md lg:top-[75px] animate-slide-down">
       <div className="h-[240px] w-full bg-cover bg-[url(@/assets/images/pro_bg.jpg)] rounded"></div>
       <img
         className="w-16 relative rounded-xl top-[-40px]"
@@ -45,4 +46,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default Profile

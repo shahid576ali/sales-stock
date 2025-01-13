@@ -61,7 +61,7 @@ const Sidebar = () => {
       { to: "/returns/list", label: "Returns List" },
       { to: "/returns/add", label: "Add Returns" },
     ],
-    people: [
+    people: [   
       { to: "/people/add", label: "Add Person" },
       { to: "/people/list", label: "People List" },
     ],
