@@ -8,9 +8,8 @@ import Cookies from "js-cookie";
 
 const Profile = () => {
   const navigate = useNavigate();
-
   const { user } = useContext(StoreContext);
-  
+
   const handleSignOut = () => {
     Cookies.remove("authToken", { path: "/" });
     localStorage.removeItem("userId");
@@ -20,16 +19,15 @@ const Profile = () => {
   return (
     <div className="h-[390px] flex flex-col items-center right-2 rounded-md fixed top-36 w-[300px] bg-[#fdfdfd] shadow-md lg:top-[80px] animate-slide-down">
       <ToastContainer />
-    <div className="h-[390px] flex flex-col items-center right-2 rounded-md fixed top-36 w-[300px] bg-white shadow-md lg:top-[75px] animate-slide-down">
       <div className="h-[240px] w-full bg-cover bg-[url(@/assets/images/pro_bg.jpg)] rounded"></div>
       <img
         className="w-16 relative rounded-xl top-[-40px]"
-        src={countries.profile.src}
-        alt="bg"
+        src={countries?.profile?.src || "fallback_image_url_here"} // Ensure safety and fallback image
+        alt="Profile"
       />
       <div className="flex flex-col items-center">
-        <p className="text-[20px] text-gray-600 font-semibold">{user.email}</p>
-        <p className="font-semibold text-gray-500 ">{user.phone}</p>
+        <p className="text-[20px] text-gray-600 font-semibold">{user?.email || "No Email"}</p>
+        <p className="font-semibold text-gray-500">{user?.phone || "No Phone"}</p>
       </div>
       <div className="flex ml-4 gap-10 mt-5 mb-4">
         <button className="border-gray-400 border rounded-xl px-3 py-1">
@@ -46,4 +44,4 @@ const Profile = () => {
   );
 };
 
-export default Profile
+export default Profile;
