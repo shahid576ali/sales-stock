@@ -1,82 +1,196 @@
-import countries from "@/assets/images/country";
 import React, { useState } from "react";
-import { Eye, EyeOff } from 'lucide-react'
-import { Link } from "react-router-dom";
+import { Eye, EyeOff } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
+import countries from "@/assets/images/country";
 
 const SignUp = () => {
+  const [showPass, setShowPass] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    password: "",
+    confirmPassword: ""
+  });
+  const [error, setError] = useState(""); // State to track password mismatch
+  const navigate = useNavigate();
 
-  const [showPass, setShowPass] = useState(false)
-  
-      const handlePass = ()=>{
-          setShowPass((prev)=> !prev)
+  // Handle form input changes
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  // Toggle password visibility
+  const handlePass = () => {
+    setShowPass((prev) => !prev);
+  };
+
+  // Validate password match before submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Check if password and confirm password match
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords do not match!");
+      return;
+    }
+
+    setError(""); // Reset error if passwords match
+
+    try {
+      const response = await axios.post("http://localhost:4000/user/signup", formData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = response.data;
+      console.log(data);
+      
+      if (!data.success) {
+        toast.error(data.message)
       }
+      toast.success(data.message);
+      setTimeout(() => navigate("/login"), 3000);
+    } catch (error) {
+      console.error(error);
+      toast.error("An error occurred. Please try again.");
+    }
+  };
 
   return (
     <div className="h-screen w-full flex items-center justify-center">
       <div className="top-48 gap-4 right-2 rounded-xl border max-w-[95%] px-6 py-8 w-[830px] flex items-center justify-center h-[480px]">
-        <form className="flex flex-col items-left w-[90%] md:w-[55%] justify-center lg:gap-4 gap-2 h-[92%]">
+        <form
+          className="flex flex-col items-left w-[90%] md:w-[55%] justify-center lg:gap-4 gap-2 h-[92%]"
+          onSubmit={handleSubmit}
+        >
           <h1 className="text-3xl text-gray-500 font-[600]">Sign Up</h1>
           <p className="text-gray-500">Create your account.</p>
-          <div className=" w-full flex-col flex lg:flex-row gap-1">
+          <div className="w-full flex-col flex lg:flex-row gap-1">
             <input
               className="border border-gray-400 outline-none p-2 px-2 rounded-[8px]"
               type="text"
-              name="first"
+              name="firstName"
               placeholder="First Name"
+              value={formData.firstName}
+              onChange={handleInputChange}
+              required
             />
             <input
               className="border border-gray-400 outline-none py-2 px-2 rounded-[8px]"
               type="text"
-              name="last"
+              name="lastName"
               placeholder="Last Name"
+              value={formData.lastName}
+              onChange={handleInputChange}
+              required
             />
           </div>
-          <div className=" w-full flex-col flex lg:flex-row gap-1">
+          <div className="w-full flex-col flex lg:flex-row gap-1">
             <input
               className="border border-gray-400 outline-none p-2 px-2 rounded-[8px]"
               type="email"
               name="email"
               placeholder="Email"
+              value={formData.email}
+              onChange={handleInputChange}
+              required
             />
             <input
               className="border border-gray-400 outline-none py-2 px-2 rounded-[8px]"
-              type="number"
+              type="text"
               name="phone"
               placeholder="Phone No."
+              value={formData.phone}
+              onChange={handleInputChange}
               onInput={(e) => {
                 if (e.target.value.length > 10) {
                   e.target.value = e.target.value.slice(0, 10);
                 }
               }}
+              required
             />
           </div>
           <div className="lg:w-[94%] w-full flex-col flex lg:flex-row gap-1">
-          <div className='flex w-full lg:w-[50%] border py-2 px-2 justify-between border-gray-400 rounded-[8px]'>
-                          <input className=' w-full  outline-none  ' type={showPass?"text":"password"} name="password" placeholder='Password' />
-                          {!showPass?<Eye onClick={handlePass} className='cursor-pointer' color='gray' />:
-                          <EyeOff onClick={handlePass} className='cursor-pointer' color='gray' />}
-                      </div>
-             <div className='flex w-full lg:w-[50%] border py-2 px-2 justify-between border-gray-400 rounded-[8px]'>
-                             <input className=' w-full  outline-none  ' type={showPass?"text":"password"} name="password" placeholder='Password' />
-                             {!showPass?<Eye onClick={handlePass} className='cursor-pointer' color='gray' />:
-                             <EyeOff onClick={handlePass} className='cursor-pointer' color='gray' />}
-                         </div>
+            <div className="flex w-full lg:w-[50%] border py-2 px-2 justify-between border-gray-400 rounded-[8px]">
+              <input
+                className="w-full outline-none"
+                type={showPass ? "text" : "password"}
+                name="password"
+                placeholder="Password"
+                value={formData.password}
+                onChange={handleInputChange}
+                required
+              />
+              {!showPass ? (
+                <Eye
+                  onClick={handlePass}
+                  className="cursor-pointer"
+                  color="gray"
+                />
+              ) : (
+                <EyeOff
+                  onClick={handlePass}
+                  className="cursor-pointer"
+                  color="gray"
+                />
+              )}
+            </div>
+            <div className="flex w-full lg:w-[50%] border py-2 px-2 justify-between border-gray-400 rounded-[8px]">
+              <input
+                className="w-full outline-none"
+                type={showPass ? "text" : "password"}
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                value={formData.confirmPassword}
+                onChange={handleInputChange}
+                required
+              />
+              {!showPass ? (
+                <Eye
+                  onClick={handlePass}
+                  className="cursor-pointer"
+                  color="gray"
+                />
+              ) : (
+                <EyeOff
+                  onClick={handlePass}
+                  className="cursor-pointer"
+                  color="gray"
+                />
+              )}
+            </div>
           </div>
+          {error && <p className="text-red-500 text-xs mt-2">{error}</p>} {/* Error message */}
           <div className="flex gap-2 items-center">
-            <input className="mt-1" type="checkbox" name="remember" />
-            <p className="text-[11px] lg:text-[14px]">I agry with the terms & conditions</p>
+            <input className="mt-1" type="checkbox" required />
+            <p className="text-[11px] lg:text-[14px]">
+              I agree with the terms & conditions
+            </p>
           </div>
-          <button className="text-white w-20 py-[6px] rounded-[6px] bg-blue-400">
+          <button
+            type="submit"
+            className="text-white w-20 py-[6px] rounded-[6px] bg-blue-400"
+          >
             SignUp
           </button>
           <p>
             Already have an Account?{" "}
-            <Link to={"/login"} className="text-blue-500" href="#">
+            <Link to={"/login"} className="text-blue-500">
               Login
             </Link>
           </p>
         </form>
-        <img className='w-[40%] hidden lg:block' src={countries.form} alt="background" />
+        <img
+          className="w-[40%] hidden lg:block"
+          src={countries.form}
+          alt="background"
+        />
       </div>
     </div>
   );

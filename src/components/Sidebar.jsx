@@ -42,32 +42,34 @@ const Sidebar = () => {
 
   const sectionOptions = {
     productsOpen: [
-      { to: "/product/add", label: "Add Product" },
       { to: "/product/list", label: "Product List" },
+      { to: "/product/add", label: "Add Product" },
     ],
     categories: [
-      { to: "/category/add", label: "Add Category" },
       { to: "/category/list", label: "Category List" },
+      { to: "/category/add", label: "Add Category" },
     ],
     sales: [
-      { to: "/sale/add", label: "Add Sale" },
       { to: "/sale/list", label: "Sale List" },
+      { to: "/sale/add", label: "Add Sale" },
     ],
     purchase: [
-      { to: "/purchase/add", label: "Add Purchase" },
       { to: "/purchase/list", label: "Purchase List" },
+      { to: "/purchase/add", label: "Add Purchase" },
     ],
     returns: [
-      { to: "/returns/add", label: "Add Return" },
-      { to: "/returns/list", label: "Return List" },
+      { to: "/returns/list", label: "Returns List" },
+      { to: "/returns/add", label: "Add Returns" },
     ],
     people: [
       { to: "/people/add", label: "Add Person" },
       { to: "/people/list", label: "People List" },
     ],
     other: [
-      { to: "/other/add", label: "Add Page" },
-      { to: "/other/list", label: "Page List" },
+      { to: "/other/userdetails", label: "User Details" },
+      { to: "/other/authentication", label: "Authentication" },
+      { to: "/other/invoice", label: "Invoice" },
+      { to: "/other/list", label: "Table" },
     ],
   };
 
@@ -114,13 +116,13 @@ const Sidebar = () => {
                 !menuState[key] || sidebar ? "h-0 border-none" : "h-[60px]"
               }`}
             >
-              {sectionOptions[key].map(({ to, label }) => (
+              {sectionOptions[key].map((e) => (
                 <Link
-                  key={to}
-                  to={to}
+                  key={e.to}
+                  to={e.to}
                   className="hover:text-orange-400 cursor-pointer flex items-center gap-4"
                 >
-                  <hr className="bg-gray-500 w-3 h-[2px]" /> {label}
+                  <hr className="bg-gray-500 w-3 h-[2px]" /> {e.label}
                 </Link>
               ))}
             </div>
