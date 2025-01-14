@@ -21,10 +21,8 @@ const userDetails = async (userId) => {
     console.log("User Details:", data);
     setUser(data.userDetails);
   } catch (error) {
-    console.log(
-      "Error fetching user details:",
-      error.response?.status || "Unknown status",
-      error.message
+    console.error(
+      "Error to connect with server",
     );
   }
 };

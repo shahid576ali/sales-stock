@@ -8,11 +8,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-     "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist"
   },
-
-
-
   "dependencies": {
     "axios": "^1.7.9",
     "dotenv": "^16.4.7",
@@ -22,6 +19,7 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.1.1",
     "react-toastify": "^11.0.2",
+    "recharts": "^2.15.0",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {

@@ -17,24 +17,34 @@ const Profile = () => {
   };
 
   return (
-    <div className="h-[390px] flex flex-col items-center right-2 rounded-md fixed top-36 w-[300px] bg-[#fdfdfd] shadow-md lg:top-[80px] animate-slide-down">
+    <div className="h-auto lg:h-[390px] z-[99] flex flex-col items-center right-4 sm:right-8 lg:right-2 rounded-md fixed top-36 lg:top-20 w-[90%] sm:w-[320px] lg:w-[300px] bg-white shadow-md animate-slide-down">
       <ToastContainer />
-      <div className="h-[240px] w-full bg-cover bg-[url(@/assets/images/pro_bg.jpg)] rounded"></div>
+      {/* Background Image */}
+      <div className="h-[200px] w-full bg-cover bg-center rounded-t-md bg-[url('@/assets/images/pro_bg.jpg')]">
+        {/* Fallback to solid color */}
+        <div className="bg-gradient-to-b from-blue-400 to-blue-600 h-full w-full rounded-t-md"></div>
+      </div>
+
+      {/* Profile Image */}
       <img
-        className="w-16 relative rounded-xl top-[-40px]"
-        src={countries?.profile?.src || "fallback_image_url_here"} // Ensure safety and fallback image
+        className="w-20 h-20 relative rounded-full border-4 border-white -mt-10"
+        src={countries?.profile?.src || "fallback_image_url_here"}
         alt="Profile"
       />
-      <div className="flex flex-col items-center">
-        <p className="text-[20px] text-gray-600 font-semibold">{user?.email || "No Email"}</p>
-        <p className="font-semibold text-gray-500">{user?.phone || "No Phone"}</p>
+
+      {/* User Info */}
+      <div className="flex flex-col items-center mt-4">
+        <p className="text-lg font-semibold text-gray-700">{user?.email || "No Email"}</p>
+        <p className="text-sm text-gray-500">{user?.phone || "No Phone"}</p>
       </div>
-      <div className="flex ml-4 gap-10 mt-5 mb-4">
-        <button className="border-gray-400 border rounded-xl px-3 py-1">
+
+      {/* Buttons */}
+      <div className="flex justify-center gap-4 mt-6 mb-4">
+        <button className="border border-gray-300 hover:border-gray-500 transition-all duration-300 rounded-xl px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100">
           <Link to={"/profile"}>Profile</Link>
         </button>
         <button
-          className="border border-gray-400 rounded-xl px-3 py-1"
+          className="border border-red-300 hover:border-red-500 transition-all duration-300 rounded-xl px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-100"
           onClick={handleSignOut}
         >
           Sign Out

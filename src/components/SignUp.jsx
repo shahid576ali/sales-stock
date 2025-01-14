@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import countries from "@/assets/images/country";
+import Loader from "./loader/Loader";
 
 const SignUp = () => {
   const [showPass, setShowPass] = useState(false);
@@ -14,56 +15,84 @@ const SignUp = () => {
     email: "",
     phone: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
   });
-  const [error, setError] = useState(""); // State to track password mismatch
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  // Handle form input changes
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Toggle password visibility
   const handlePass = () => {
     setShowPass((prev) => !prev);
   };
 
-  // Validate password match before submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Check if password and confirm password match
     if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match!");
+      setError("Password and ConfirmPassword must be same");
       return;
     }
 
-    setError(""); // Reset error if passwords match
+    if (8 > formData.password.length) {
+      setError("Password must be 8 characters long");
+      return;
+    }
+
+    if (8 > formData.phone.length) {
+      setError("Password must be 8 characters long");
+      return;
+    }
+
+    if (!/[A-Z]/.test(formData.password)) {
+      setError("Password must contain a capital letter (A-Z)");
+      return;
+    }
+
+    if (!/[!@#$%^&*()_+=-?><{}]/.test(formData.password)) {
+      setError("Password must contain a special character (!@#$%^&*()_+=-?><{})");
+      return;
+    }
 
     try {
-      const response = await axios.post("http://localhost:4000/user/signup", formData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await axios.post(
+        "http://localhost:4000/user/signup",
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       const data = response.data;
-      console.log(data);
       
-      if (!data.success) {
-        toast.error(data.message)
+      if (data.success === false) {
+        console.log(data);
+        toast.error(data.message);
+        return
       }
-      toast.success(data.message);
-      setTimeout(() => navigate("/login"), 3000);
+      setIsLoading(true);
+      setTimeout(() => {
+        navigate("/login");
+        toast.success(data.message);
+        setIsLoading(false);
+      }, 3000);
     } catch (error) {
+      setIsLoading(false)
       console.error(error);
       toast.error("An error occurred. Please try again.");
     }
   };
 
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <div className="h-screen w-full flex items-center justify-center">
+      <ToastContainer />
       <div className="top-48 gap-4 right-2 rounded-xl border max-w-[95%] px-6 py-8 w-[830px] flex items-center justify-center h-[480px]">
         <form
           className="flex flex-col items-left w-[90%] md:w-[55%] justify-center lg:gap-4 gap-2 h-[92%]"
@@ -103,7 +132,7 @@ const SignUp = () => {
             />
             <input
               className="border border-gray-400 outline-none py-2 px-2 rounded-[8px]"
-              type="text"
+              type="number"
               name="phone"
               placeholder="Phone No."
               value={formData.phone}
@@ -166,7 +195,7 @@ const SignUp = () => {
               )}
             </div>
           </div>
-          {error && <p className="text-red-500 text-xs mt-2">{error}</p>} {/* Error message */}
+          {error && <p className="text-red-500 text-xs mt-2">{error}</p>}
           <div className="flex gap-2 items-center">
             <input className="mt-1" type="checkbox" required />
             <p className="text-[11px] lg:text-[14px]">

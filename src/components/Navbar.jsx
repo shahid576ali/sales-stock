@@ -28,10 +28,10 @@ const Navbar = () => {
     <header className="flex fixed top-0 w-full flex-row h-[73px] gap-3">
       <Sidebar />
       <nav className="h-[73px] bg-[#fdfdfd] shadow-lg flex px-4 sm:px-8 items-center justify-between lg:justify-between w-full">
-        <div className=" flex w-[80%] gap-2 border sm:w-[350px] border-gray-400 lg:h-10 h-8 rounded-[12px] px-1 items-center ">
+        <div className=" flex w-[80%] gap-2 border sm:w-[450px] border-gray-400 lg:h-10 h-10 rounded-[12px] px-1 items-center ">
           <SearchIcon className="pl-2" color="grey" size={"27px"} />
           <input
-            className="w-full outline-none border-none h-[90%] bg-[#fdfdfd] rounded"
+            className="w-full outline-none border-none h-[97%] bg-[#fdfdfd] rounded"
             type="text"
             placeholder="Search here..."
           />
