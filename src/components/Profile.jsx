@@ -17,9 +17,9 @@ const Profile = () => {
   };
 
   return (
-    <div className="h-auto lg:h-[390px] z-[99] flex flex-col items-center right-4 sm:right-8 lg:right-2 rounded-md fixed top-36 lg:top-20 w-[90%] sm:w-[320px] lg:w-[300px] bg-white shadow-md animate-slide-down">
+    <div className="h-auto lg:h-[390px] flex flex-col items-center right-4 sm:right-8 lg:right-2 rounded-md fixed top-36 lg:top-20 w-[60%] sm:w-[320px] lg:w-[300px] bg-white shadow-md animate-slide-down">
       <ToastContainer />
-      {/* Background Image */}
+
       <div className="h-[200px] w-full bg-cover bg-center rounded-t-md bg-[url('@/assets/images/pro_bg.jpg')]">
         {/* Fallback to solid color */}
         <div className="bg-gradient-to-b from-blue-400 to-blue-600 h-full w-full rounded-t-md"></div>

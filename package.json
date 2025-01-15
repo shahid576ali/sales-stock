@@ -1,5 +1,5 @@
 {
-  "name": "sidebar",
+  "name": "sales_and_stocks",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -12,10 +12,12 @@
   },
   "dependencies": {
     "axios": "^1.7.9",
+    "chart.js": "^4.4.7",
     "dotenv": "^16.4.7",
     "js-cookie": "^3.0.5",
     "lucide-react": "^0.469.0",
     "react": "^18.3.1",
+    "react-chartjs-2": "^5.3.0",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.1.1",
     "react-toastify": "^11.0.2",

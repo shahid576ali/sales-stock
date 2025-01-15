@@ -1,13 +1,15 @@
 import { StoreContext } from "@/context/storeContext";
 import React, { useContext } from "react";
 import Card from "./Card";
-import Charts from "./Charts";
+import TopProduct from "./TopProduct";
+import Orders from "./Orders";
+import AnalyticsCharts from "./analytics-charts";
 
 const Dashboard = () => {
   const { user } = useContext(StoreContext);
 
   return (
-    <div className="flex flex-col items-end justify-start py-[89px] pl-[80px] h-screen w-full">
+    <div className="flex flex-col items-center lg:items-end py-[89px] lg:pl-[80px] w-[100%]">
       <div className="flex flex-wrap lg:flex-nowrap w-full justify-between mt-2 p-3 gap-4">
         {/* Greeting Section */}
         <div className="w-full lg:w-[30%] flex flex-col gap-4">
@@ -42,7 +44,9 @@ const Dashboard = () => {
           unit={"4569 M"}
         />
       </div>
-      <Charts />
+      <AnalyticsCharts />
+      <TopProduct />
+      <Orders />
     </div>
   );
 };

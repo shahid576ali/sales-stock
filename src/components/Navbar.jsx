@@ -25,7 +25,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="flex fixed top-0 w-full flex-row h-[73px] gap-3">
+    <header className="flex fixed z-[99] top-0 w-full flex-row h-[73px] gap-3">
       <Sidebar />
       <nav className="h-[73px] bg-[#fdfdfd] shadow-lg flex px-4 sm:px-8 items-center justify-between lg:justify-between w-full">
         <div className=" flex w-[80%] gap-2 border sm:w-[450px] border-gray-400 lg:h-10 h-10 rounded-[12px] px-1 items-center ">
