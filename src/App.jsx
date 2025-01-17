@@ -5,7 +5,6 @@ import SignUp from "./components/SignUp";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Main from "./pages/Main";
 
-// Function to get the value of a cookie by name
 const getCookie = (name) => {
   const cookieString = document.cookie;
   const cookies = cookieString.split("; ").reduce((acc, cookie) => {
@@ -16,7 +15,6 @@ const getCookie = (name) => {
   return cookies[name];
 };
 
-// Check if the user is logged in by checking the authToken cookie
 const isLoggedIn = () => {
   return !!getCookie("authToken");
 };

@@ -15,7 +15,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
-  const [sidebar, setSidebar] = useState(true);
+  const [sidebar, setSidebar] = useState(true); // Toggle sidebar width
   const [menuState, setMenuState] = useState({
     productsOpen: false,
     categories: false,
@@ -28,13 +28,10 @@ const Sidebar = () => {
   const [isVisible, setIsVisible] = useState(false); // For small screen visibility
 
   const handleMenuToggle = (menuKey) => {
-    setMenuState((prev) => {
-      const updatedState = Object.keys(prev).reduce((acc, key) => {
-        acc[key] = key === menuKey ? !prev[key] : false;
-        return acc;
-      }, {});
-      return updatedState;
-    });
+    setMenuState((prev) => ({
+      ...prev,
+      [menuKey]: !prev[menuKey],
+    }));
   };
 
   const handleSidebarToggle = () => {
@@ -43,7 +40,6 @@ const Sidebar = () => {
 
   const handleMobileToggle = () => {
     setIsVisible(!isVisible);
-    setSidebar(!sidebar);
   };
 
   const sectionOptions = {
@@ -112,7 +108,7 @@ const Sidebar = () => {
         <Link to={"/"} className="lg:hidden">
           Logo
         </Link>
-        <div className="flex flex-col w-full pl-5 justify-start gap-4 h-[80%] mt-12">
+        <div className="flex flex-col w-full pl-5 justify-start gap-4 h-[80%] overflow-auto mt-12">
           <Link
             to={"/"}
             className="hover:text-orange-400 flex items-center w-full text-gray-500 gap-6 cursor-pointer mb-3"
@@ -138,15 +134,18 @@ const Sidebar = () => {
                 {!sidebar && (
                   <div className="flex w-full justify-between items-center">
                     <p>{label}</p>
-                    <CornerRightDown size={15} />
+                    <CornerRightDown
+                      size={15}
+                      className={`transition-transform duration-300 ${
+                        menuState[key] ? "rotate-90" : ""
+                      }`}
+                    />
                   </div>
                 )}
               </div>
               <div
                 className={`flex flex-col gap-3 pl-3 text-gray-500 transition-all duration-500 ease-in-out overflow-hidden ${
-                  !menuState[key] || sidebar
-                    ? "max-h-0 border-none"
-                    : "max-h-[500px]"
+                  menuState[key] ? "max-h-[500px]" : "max-h-0"
                 }`}
               >
                 {sectionOptions[key].map((e) => (
@@ -161,7 +160,10 @@ const Sidebar = () => {
               </div>
             </React.Fragment>
           ))}
-          <Link to={"/reports"} className="hover:text-orange-400 flex w-full items-center pr-5 text-gray-500 gap-6 cursor-pointer">
+          <Link
+            to={"/reports"}
+            className="hover:text-orange-400 flex w-full items-center pr-5 text-gray-500 gap-6 cursor-pointer"
+          >
             <NotepadText size={!sidebar ? 18 : 22} />
             {!sidebar && <p>Reports</p>}
           </Link>
