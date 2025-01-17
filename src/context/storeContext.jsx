@@ -18,7 +18,6 @@ const userDetails = async (userId) => {
       withCredentials: true
     });
     const data = response.data;
-    console.log("User Details:", data);
     setUser(data.userDetails);
   } catch (error) {
     console.error(

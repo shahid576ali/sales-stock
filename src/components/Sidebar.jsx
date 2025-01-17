@@ -161,14 +161,13 @@ const Sidebar = () => {
               </div>
             </React.Fragment>
           ))}
-          <div className="hover:text-orange-400 flex w-full items-center pr-5 text-gray-500 gap-6 cursor-pointer">
+          <Link to={"/reports"} className="hover:text-orange-400 flex w-full items-center pr-5 text-gray-500 gap-6 cursor-pointer">
             <NotepadText size={!sidebar ? 18 : 22} />
             {!sidebar && <p>Reports</p>}
-          </div>
+          </Link>
         </div>
       </div>
 
-      {/* Overlay for small screens */}
       {isVisible && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-40"

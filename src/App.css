@@ -10,6 +10,6 @@
   }
   
   .animate-slide-down {
-    animation: slideDown .8s ease-out;
+    animation: slideDown .7s ease-out;
     z-index: 99;
   }
