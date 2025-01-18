@@ -5,37 +5,45 @@ export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
   const [user, setUser] = useState({});
+  const apiKey = import.meta.env.VITE_MY_API_KEY;
 
-const userDetails = async (userId) => {
-  if (!userId) {
-    console.error("Invalid userId");
-    return;
-  }
+  const userDetails = async (userId) => {
+    if (!userId) {
+      console.error("Invalid userId");
+      return;
+    }
 
-  try {
-    const response = await axios.get(`http://localhost:4000/user/details`, {
-      params: { userId },
-      withCredentials: true
-    });
-    const data = response.data;
-    setUser(data.userDetails);
-  } catch (error) {
-    console.error(
-      "Error to connect with server",
-    );
-  }
-};
+    if (!apiKey) {
+      console.error("API Key is not defined in environment variables");
+      return;
+    }
+
+    try {
+      const response = await axios.get(`${apiKey}/user/details`, {
+        params: { userId },
+        withCredentials: true,
+      });
+      const data = response.data;
+
+      setUser(data.userDetails);
+      console.log("User details fetched successfully:", data.userDetails);
+    } catch (error) {
+      console.error("Error connecting to the server:", error);
+    }
+  };
+
   const userId = localStorage.getItem("userId");
 
   useEffect(() => {
     if (userId) {
       userDetails(userId);
     }
-  }, []);
+  }, [userId]);
 
   const contextValue = {
     userDetails,
     user,
+    apiKey
   };
 
   return (

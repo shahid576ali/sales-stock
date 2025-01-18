@@ -11,7 +11,7 @@ import {
   ShoppingCartIcon,
   User,
 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
@@ -26,12 +26,16 @@ const Sidebar = () => {
     other: false,
   });
   const [isVisible, setIsVisible] = useState(false); // For small screen visibility
+  const contentRefs = useRef({}); // Refs for dynamically calculating heights
 
   const handleMenuToggle = (menuKey) => {
-    setMenuState((prev) => ({
-      ...prev,
-      [menuKey]: !prev[menuKey],
-    }));
+    setMenuState((prev) => {
+      const updatedState = Object.keys(prev).reduce((acc, key) => {
+        acc[key] = key === menuKey ? !prev[key] : false; // Close others
+        return acc;
+      }, {});
+      return updatedState;
+    });
   };
 
   const handleSidebarToggle = () => {
@@ -144,15 +148,18 @@ const Sidebar = () => {
                 )}
               </div>
               <div
-                className={`flex flex-col gap-3 pl-3 text-gray-500 transition-all duration-500 ease-in-out overflow-hidden ${
-                  menuState[key] ? "max-h-[500px]" : "max-h-0"
+                ref={(el) => (contentRefs.current[key] = el)}
+                className={`overflow-hidden transition-all duration-500 ${
+                  menuState[key]
+                    ? "max-h-[1000px] opacity-100"
+                    : "max-h-0 opacity-0"
                 }`}
               >
                 {sectionOptions[key].map((e) => (
                   <Link
                     key={e.to}
                     to={e.to}
-                    className="hover:text-orange-400 cursor-pointer flex items-center gap-4"
+                    className="hover:text-orange-400 cursor-pointer flex items-center gap-4 mt-1"
                   >
                     <hr className="bg-gray-500 w-3 h-[2px]" /> {e.label}
                   </Link>
