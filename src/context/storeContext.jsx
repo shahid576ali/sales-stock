@@ -24,9 +24,7 @@ const StoreContextProvider = (props) => {
         withCredentials: true,
       });
       const data = response.data;
-
       setUser(data.userDetails);
-      console.log("User details fetched successfully:", data.userDetails);
     } catch (error) {
       console.error("Error connecting to the server:", error);
     }

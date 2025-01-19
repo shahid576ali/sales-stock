@@ -1,7 +1,6 @@
 import {
   Box,
   Copy,
-  CornerRightDown,
   CreditCard,
   Gem,
   Layers,
@@ -43,40 +42,8 @@ const Sidebar = () => {
   };
 
   const handleMobileToggle = () => {
+    setSidebar(!sidebar);
     setIsVisible(!isVisible);
-  };
-
-  const sectionOptions = {
-    productsOpen: [
-      { to: "/product/list", label: "Product List" },
-      { to: "/product/add", label: "Add Product" },
-    ],
-    categories: [
-      { to: "/category/list", label: "Category List" },
-      { to: "/category/add", label: "Add Category" },
-    ],
-    sales: [
-      { to: "/sale/list", label: "Sale List" },
-      { to: "/sale/add", label: "Add Sale" },
-    ],
-    purchase: [
-      { to: "/purchase/list", label: "Purchase List" },
-      { to: "/purchase/add", label: "Add Purchase" },
-    ],
-    returns: [
-      { to: "/returns/list", label: "Returns List" },
-      { to: "/returns/add", label: "Add Returns" },
-    ],
-    people: [
-      { to: "/people/add", label: "Add Person" },
-      { to: "/people/list", label: "People List" },
-    ],
-    other: [
-      { to: "/other/userlist", label: "User List" },
-      { to: "/other/authentication", label: "Authentication" },
-      { to: "/other/invoice", label: "Invoice" },
-      { to: "/other/list", label: "Table" },
-    ],
   };
 
   return (
@@ -98,7 +65,7 @@ const Sidebar = () => {
         className={`fixed top-0 left-0 h-screen ${
           isVisible ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0 lg:static ${
-          sidebar ? "lg:w-[65px]" : "lg:w-[320px]"
+          sidebar ? "lg:w-[65px]" : "lg:w-[250px]"
         } w-[320px] bg-[#fdfdfd] flex flex-col items-center py-4 transition-all duration-500 ease-in-out shadow-[2px_0_5px_rgba(0,0,0,0.2)] z-50`}
       >
         <div className="hidden lg:flex w-full justify-between px-4 items-center">
@@ -117,61 +84,55 @@ const Sidebar = () => {
             to={"/"}
             className="hover:text-orange-400 flex items-center w-full text-gray-500 gap-6 cursor-pointer mb-3"
           >
-            <Box size={!sidebar ? 18 : 22} />
+            <Box size={22} />
             {!sidebar && <p>Dashboard</p>}
           </Link>
-          {[
-            { key: "productsOpen", icon: ShoppingCartIcon, label: "Products" },
-            { key: "categories", icon: Copy, label: "Categories" },
-            { key: "sales", icon: Gem, label: "Sale" },
-            { key: "purchase", icon: CreditCard, label: "Purchases" },
-            { key: "returns", icon: Minimize2, label: "Returns" },
-            { key: "people", icon: User, label: "People" },
-            { key: "other", icon: Layers, label: "Other Pages" },
-          ].map(({ key, icon: Icon, label }) => (
-            <React.Fragment key={key}>
-              <div
-                className="hover:text-orange-400 flex w-full items-center pr-5 text-gray-500 gap-6 cursor-pointer"
-                onClick={() => handleMenuToggle(key)}
-              >
-                <Icon size={22} />
-                {!sidebar && (
-                  <div className="flex w-full justify-between items-center">
-                    <p>{label}</p>
-                    <CornerRightDown
-                      size={15}
-                      className={`transition-transform duration-300 ${
-                        menuState[key] ? "rotate-90" : ""
-                      }`}
-                    />
-                  </div>
-                )}
-              </div>
-              <div
-                ref={(el) => (contentRefs.current[key] = el)}
-                className={`overflow-hidden transition-all duration-500 ${
-                  menuState[key]
-                    ? "max-h-[1000px] opacity-100"
-                    : "max-h-0 opacity-0"
-                }`}
-              >
-                {sectionOptions[key].map((e) => (
-                  <Link
-                    key={e.to}
-                    to={e.to}
-                    className="hover:text-orange-400 cursor-pointer flex items-center gap-4 mt-1"
-                  >
-                    <hr className="bg-gray-500 w-3 h-[2px]" /> {e.label}
-                  </Link>
-                ))}
-              </div>
-            </React.Fragment>
-          ))}
+
+          <Link
+            to={"/copy"}
+            className="hover:text-orange-400 flex items-center w-full text-gray-500 gap-6 cursor-pointer mb-3"
+          >
+            <Copy size={22} />
+            {!sidebar && <p>Copy</p>}
+          </Link>
+
+          <Link
+            to={"/copy"}
+            className="hover:text-orange-400 flex items-center w-full text-gray-500 gap-6 cursor-pointer mb-3"
+          >
+            <CreditCard size={22} />
+            {!sidebar && <p>Copy</p>}
+          </Link>
+
+          <Link
+            to={"/copy"}
+            className="hover:text-orange-400 flex items-center w-full text-gray-500 gap-6 cursor-pointer mb-3"
+          >
+            <Gem size={22} />
+            {!sidebar && <p>Copy</p>}
+          </Link>
+
+          <Link
+            to={"/copy"}
+            className="hover:text-orange-400 flex items-center w-full text-gray-500 gap-6 cursor-pointer mb-3"
+          >
+            <Layers size={22} />
+            {!sidebar && <p>Copy</p>}
+          </Link>
+
+          <Link
+            to={"/copy"}
+            className="hover:text-orange-400 flex items-center w-full text-gray-500 gap-6 cursor-pointer mb-3"
+          >
+            <ShoppingCartIcon size={22} />
+            {!sidebar && <p>Copy</p>}
+          </Link>
+          
           <Link
             to={"/reports"}
             className="hover:text-orange-400 flex w-full items-center pr-5 text-gray-500 gap-6 cursor-pointer"
           >
-            <NotepadText size={!sidebar ? 18 : 22} />
+            <NotepadText size={22} />
             {!sidebar && <p>Reports</p>}
           </Link>
         </div>
