@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
@@ -6,6 +6,8 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import countries from "@/assets/images/country";
 import Loader from "./loader/Loader";
+import Load from "./loader/load";
+import { StoreContext } from "@/context/storeContext";
 
 const SignUp = () => {
   const [showPass, setShowPass] = useState(false);
@@ -20,6 +22,8 @@ const SignUp = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+
+  const {apiKey} = useContext(StoreContext);
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -51,6 +55,7 @@ const SignUp = () => {
       setError("Password must contain a capital letter (A-Z)");
       return;
     }
+    setIsLoading(true)
 
     if (!/[!@#$%^&*()_+=-?><{}]/.test(formData.password)) {
       setError("Password must contain a special character (!@#$%^&*()_+=-?><{})");
@@ -59,7 +64,7 @@ const SignUp = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:4000/user/signup",
+        apiKey+"/user/signup",
         formData,
         {
           headers: {
@@ -75,22 +80,19 @@ const SignUp = () => {
         toast.error(data.message);
         return
       }
-      setIsLoading(true);
+      toast.success(data.message);
       setTimeout(() => {
         navigate("/login");
-        toast.success(data.message);
         setIsLoading(false);
       }, 3000);
     } catch (error) {
       setIsLoading(false)
       console.error(error);
-      toast.error("An error occurred. Please try again.");
+      toast.error(error.message);
     }
   };
 
-  return isLoading ? (
-    <Loader />
-  ) : (
+  return (
     <div className="h-screen w-full flex items-center justify-center">
       <ToastContainer />
       <div className="top-48 gap-4 right-2 rounded-xl border max-w-[95%] px-6 py-8 w-[830px] flex items-center justify-center h-[480px]">
@@ -204,9 +206,9 @@ const SignUp = () => {
           </div>
           <button
             type="submit"
-            className="text-white w-20 py-[6px] rounded-[6px] bg-blue-400"
+            className="text-white w-20 py-[6px] rounded-[6px] bg-blue-400 flex items-center justify-center"
           >
-            SignUp
+            {isLoading?<Load /> : "Sign Up"}
           </button>
           <p>
             Already have an Account?{" "}

@@ -20,7 +20,7 @@ const isLoggedIn = () => {
 };
 
 const ProtectedRoute = ({ element }) => {
-  return isLoggedIn() ? element : <Navigate to="/login" />;
+  return isLoggedIn() ? element : (<Navigate to="/login" /> || localStorage.removeItem("userId"));
 };
 
 const App = () => {

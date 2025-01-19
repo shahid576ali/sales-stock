@@ -7,12 +7,14 @@ import "react-toastify/dist/ReactToastify.css";
 import Loader from "./loader/Loader";
 import axios from "axios";
 import { StoreContext } from "@/context/storeContext";
+import Load from "./loader/load";
 
 const Login = () => {
   const [showPass, setShowPass] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoad, setIsLoad] = useState(false)
   const navigate = useNavigate();
 
   const { userDetails, apiKey } = useContext(StoreContext);
@@ -23,7 +25,7 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    console.log(apiKey);
+    setIsLoad(true)
     
     try {
       const response = await axios.post(apiKey+"/user/signin", {
@@ -44,9 +46,11 @@ const Login = () => {
         setTimeout(() => {
           navigate("/");
           setIsLoading(false);
+          setIsLoad(false)
         }, 3000);
       } else {
         setIsLoading(false);
+        setIsLoad(false)
         toast.error(data.message, {
           position: "top-right",
           autoClose: 3000,
@@ -54,6 +58,7 @@ const Login = () => {
       }
     } catch (error) {
       setIsLoading(false);
+      setIsLoad(false)
       toast.error(error.response?.data?.message || "An error occurred.", {
         position: "top-right",
         autoClose: 3000,
@@ -112,9 +117,9 @@ const Login = () => {
           </a>
           <button
             type="submit"
-            className="text-white w-20 py-[6px] rounded-[6px] bg-blue-400"
+            className="text-white w-20 py-[6px] rounded-[6px] bg-blue-400 flex items-center justify-center"
           >
-            Sign In
+            {isLoad?<Load /> : "Sign In"}
           </button>
           <p>
             Create an Account{" "}
