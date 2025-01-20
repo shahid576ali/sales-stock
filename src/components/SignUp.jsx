@@ -5,7 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import countries from "@/assets/images/country";
-import Load from "./loader/load";
+import Load from "./loader/Load";
 import { StoreContext } from "@/context/storeContext";
 
 const SignUp = () => {
