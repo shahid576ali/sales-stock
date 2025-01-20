@@ -27,7 +27,7 @@ const Home = () => {
             <div className="p-8">
               <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Welcome back</div>
               <h1 className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                {user.firstName}
+                {user.firstName} {user.lastName}
               </h1>
               <p className="mt-2 text-lg text-gray-600">
                 Here's an overview of your task management activity.
