@@ -1,11 +1,10 @@
-import React, { useCallback, useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import countries from "@/assets/images/country";
-import Loader from "./loader/Loader";
 import Load from "./loader/load";
 import { StoreContext } from "@/context/storeContext";
 
