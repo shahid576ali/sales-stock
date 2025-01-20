@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Loader from "./loader/Loader";
 import axios from "axios";
 import { StoreContext } from "@/context/storeContext";
-import Load from "./loader/load";
+import Load from "./loader/Load";
 
 const Login = () => {
   const [showPass, setShowPass] = useState(false);
