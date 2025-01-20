@@ -81,9 +81,9 @@ const SignUp = () => {
         return
       }
       toast.success(data.message);
+      setIsLoading(false);
       setTimeout(() => {
         navigate("/login");
-        setIsLoading(false);
       }, 3000);
     } catch (error) {
       setIsLoading(false)
