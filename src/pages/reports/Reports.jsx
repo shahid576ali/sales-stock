@@ -43,9 +43,9 @@ const TaskReports = () => {
     <div className="container mx-auto py-[89px] pl-0 lg:pl-[80px] min-h-screen pr-4">
       <h1 className="text-3xl font-bold mb-8 text-gray-800">Task Reports Dashboard</h1>
       
-      <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+      <div className="bg-gray-50 rounded-lg shadow-md p-6 mb-8">
         <h2 className="text-xl font-semibold mb-4 text-gray-700">Add New Task Report</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4 ">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             <input
               type="text"
@@ -87,7 +87,7 @@ const TaskReports = () => {
         </form>
       </div>
 
-      <div className="bg-white rounded-lg shadow overflow-hidden">
+      <div className="bg-white rounded-lg shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead className="bg-gray-100">
