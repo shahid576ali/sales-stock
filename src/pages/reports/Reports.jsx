@@ -40,7 +40,7 @@ const TaskReports = () => {
   };
 
   return (
-    <div className="container mx-auto py-[89px] lg:pl-[80px] min-h-screen pr-4">
+    <div className="container mx-auto py-[89px] pl-0 lg:pl-[80px] min-h-screen pr-4">
       <h1 className="text-3xl font-bold mb-8 text-gray-800">Task Reports Dashboard</h1>
       
       <div className="bg-white rounded-lg shadow-md p-6 mb-8">

@@ -18,6 +18,6 @@
     display: none;
   }
 
-  .sahdow{
+  .shadow{
     box-shadow: 4px 6px rgba(0, 0, 0, 0.1), 0px -4px 6px rgba(0, 0, 0, 0.1), 4px 0px 6px rgba(0, 0, 0, 0.1), -4px 0px 6px rgba(0, 0, 0, 0.1)
   }

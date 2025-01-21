@@ -46,7 +46,7 @@ const Sidebar = () => {
   return (
     <div>
       <div className="lg:hidden flex justify-between items-center px-4 h-full gap-4 shadow-md bg-white">
-        <Link to={"/home"} className="text-lg font-bold">
+        <Link to={"/"} className="text-lg font-bold">
           Logo
         </Link>
         <Menu
@@ -66,18 +66,18 @@ const Sidebar = () => {
       >
         <div className="hidden lg:flex w-full justify-between px-4 items-center">
           {!sidebar && (
-            <Link to={"/home"} className="text-[15px]">
+            <Link to={"/"} className="text-[15px]">
               Logo
             </Link>
           )}
           <Menu onClick={handleSidebarToggle} className="cursor-pointer" />
         </div>
-        <Link to={"/home"} className="lg:hidden">
+        <Link to={"/"} className="lg:hidden">
           Logo
         </Link>
         <div className="flex flex-col w-full pl-5 justify-start gap-4 h-[80%] overflow-auto mt-12">
           <Link
-            to={"/home"}
+            to={"/"}
             className="hover:text-orange-400 flex items-center w-full text-gray-500 gap-6 cursor-pointer mb-3"
           >
             <Box size={22} />

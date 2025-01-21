@@ -44,7 +44,7 @@ const Login = () => {
         localStorage.setItem("userId", user);
 
         setTimeout(() => {
-          navigate("/home");
+          navigate("/");
           setIsLoading(false);
           setIsLoad(false)
         }, 3000);
