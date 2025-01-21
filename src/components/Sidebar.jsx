@@ -22,13 +22,12 @@ const Sidebar = () => {
     people: false,
     other: false,
   });
-  const [isVisible, setIsVisible] = useState(false); // For small screen visibility
-  const contentRefs = useRef({}); // Refs for dynamically calculating heights
+  const [isVisible, setIsVisible] = useState(false);
 
   const handleMenuToggle = (menuKey) => {
     setMenuState((prev) => {
       const updatedState = Object.keys(prev).reduce((acc, key) => {
-        acc[key] = key === menuKey ? !prev[key] : false; // Close others
+        acc[key] = key === menuKey ? !prev[key] : false;
         return acc;
       }, {});
       return updatedState;
@@ -46,9 +45,8 @@ const Sidebar = () => {
 
   return (
     <div>
-      {/* Mobile Menu Toggle */}
       <div className="lg:hidden flex justify-between items-center px-4 h-full gap-4 shadow-md bg-white">
-        <Link to={"/"} className="text-lg font-bold">
+        <Link to={"/home"} className="text-lg font-bold">
           Logo
         </Link>
         <Menu
@@ -68,18 +66,18 @@ const Sidebar = () => {
       >
         <div className="hidden lg:flex w-full justify-between px-4 items-center">
           {!sidebar && (
-            <Link to={"/"} className="text-[15px]">
+            <Link to={"/home"} className="text-[15px]">
               Logo
             </Link>
           )}
           <Menu onClick={handleSidebarToggle} className="cursor-pointer" />
         </div>
-        <Link to={"/"} className="lg:hidden">
+        <Link to={"/home"} className="lg:hidden">
           Logo
         </Link>
         <div className="flex flex-col w-full pl-5 justify-start gap-4 h-[80%] overflow-auto mt-12">
           <Link
-            to={"/"}
+            to={"/home"}
             className="hover:text-orange-400 flex items-center w-full text-gray-500 gap-6 cursor-pointer mb-3"
           >
             <Box size={22} />
@@ -99,7 +97,7 @@ const Sidebar = () => {
             className="hover:text-orange-400 flex items-center w-full text-gray-500 gap-6 cursor-pointer mb-3"
           >
             <CreditCard size={22} />
-            {!sidebar && <p>Copy</p>}
+            {!sidebar && <p>Purchase</p>}
           </Link>
 
           <Link
@@ -107,7 +105,7 @@ const Sidebar = () => {
             className="hover:text-orange-400 flex items-center w-full text-gray-500 gap-6 cursor-pointer mb-3"
           >
             <Gem size={22} />
-            {!sidebar && <p>Copy</p>}
+            {!sidebar && <p>Sales</p>}
           </Link>
 
           <Link
@@ -115,7 +113,7 @@ const Sidebar = () => {
             className="hover:text-orange-400 flex items-center w-full text-gray-500 gap-6 cursor-pointer mb-3"
           >
             <Layers size={22} />
-            {!sidebar && <p>Copy</p>}
+            {!sidebar && <p>Others</p>}
           </Link>
 
           <Link

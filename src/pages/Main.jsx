@@ -10,7 +10,7 @@ const Main = () => {
     <>
     <Navbar />
     <Routes>
-      <Route path='/' element={<Home />} />
+      <Route path='/home' element={<Home />} />
       <Route path='/other/userlist' element={<User />} />
       <Route path='/reports' element={<TaskReports />} />
     </Routes>

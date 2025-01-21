@@ -2,18 +2,12 @@ import countries from "@/assets/images/country";
 import { AlignRight, Bell, Mail, SearchIcon } from "lucide-react";
 import React, { useState } from "react";
 import Sidebar from "./Sidebar";
-import NewTask from "./NewTask";
 import Profile from "./Profile";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const [showNewTask, setShowNewTask] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [showMenu, setshowMenu] = useState(false);
-
-  const handleNewTaskClick = () => {
-    setShowNewTask((prev) => !prev);
-    setShowProfile(false);
-  };
 
   const handleProfileClick = () => {
     setShowProfile((prev) => !prev);
@@ -42,12 +36,11 @@ const Navbar = () => {
             showMenu ? "flex" : "hidden"
           } right-7 top-[74px] rounded shadow-lg lg:shadow-none bg-[#fdfdfd] p-2 lg:flex lg:static lg:bg-transparent lg:w-[350px] items-center justify-between gap-3 transition-all duration-300 animate-slide-down`}
         >
-          <button
+          <Link to={'/reports'}
             className="border rounded-[8px] shadow-sm text-gray-500 text-xs px-3 gap-1 flex items-center justify-center"
-            onClick={handleNewTaskClick}
           >
             <p className="text-2xl font-light mb-1">+</p> New Task
-          </button>
+          </Link>
 
           <Mail className="cursor-pointer" color="grey" size={20} />
           <Bell className="cursor-pointer" color="grey" size={20} />
@@ -62,7 +55,6 @@ const Navbar = () => {
         <AlignRight onClick={handleMenuClick} className="lg:hidden block" />
       </nav>
 
-      {showNewTask && <NewTask />}
       {showProfile && <Profile />}
     </header>
   );
