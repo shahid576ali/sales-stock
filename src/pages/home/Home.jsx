@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { User, Clipboard, FileText } from 'lucide-react';
+import { Clipboard, FileText } from 'lucide-react';
 import countries from '@/assets/images/country';
 import { StoreContext } from '@/context/storeContext';
 
