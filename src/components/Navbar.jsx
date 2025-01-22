@@ -35,7 +35,7 @@ const Navbar = () => {
             showMenu ? "flex" : "hidden"
           } right-7 top-[74px] rounded shadow-lg lg:shadow-none bg-[#fdfdfd] p-2 lg:flex lg:static lg:bg-transparent lg:w-[350px] items-center justify-between gap-3 transition-all duration-300 animate-slide-down`}
         >
-          <Link to={'/reports'}
+          <Link to={'/tasks'}
             className="border rounded-[8px] shadow-sm text-gray-500 text-xs px-3 gap-1 flex items-center justify-center"
           >
             <p className="text-2xl font-light mb-1">+</p> New Task

@@ -7,6 +7,7 @@ import {
   Menu,
   NotepadText,
   ShoppingCartIcon,
+  StickyNote,
 } from "lucide-react";
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
@@ -117,11 +118,11 @@ const Sidebar = () => {
           </Link>
 
           <Link
-            to={"/copy"}
+            to={"/tasks"}
             className="hover:text-orange-400 flex items-center w-full text-gray-500 gap-6 cursor-pointer mb-3"
           >
-            <ShoppingCartIcon size={22} />
-            {!sidebar && <p>Copy</p>}
+            <StickyNote size={22} />
+            {!sidebar && <p>Task</p>}
           </Link>
           
           <Link

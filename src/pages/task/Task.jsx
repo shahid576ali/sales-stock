@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { PlusCircle, CheckCircle, Clock, XCircle } from 'lucide-react';
 
-const Reports = () => {
+const Task = () => {
   const [reports, setReports] = useState([]);
   const [newReport, setNewReport] = useState({ task: '', status: '', comments: '' });
   const [lastReportId, setLastReportId] = useState(0);
@@ -15,7 +15,7 @@ const Reports = () => {
     if (newReport.task && newReport.status) {
       const now = new Date();
 
-      const newId = "REP-" + String(lastReportId + 1).padStart(4, '0');
+      const newId = "TSK-" + String(lastReportId + 1).padStart(4, '0');
 
       setReports((prev) => [
         {
@@ -47,10 +47,10 @@ const Reports = () => {
 
   return (
     <div className="container mx-auto py-[89px] pl-0 lg:pl-[80px] min-h-screen lg:pr-4">
-      <h1 className="text-3xl font-bold mb-8 text-gray-800 text-center lg:text-start">Report Dashboard</h1>
+      <h1 className="text-3xl font-bold mb-8 text-gray-800 text-center lg:text-start">Task Dashboard</h1>
       
       <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-        <h2 className="text-xl font-semibold mb-4 text-gray-700">Add New Report</h2>
+        <h2 className="text-xl font-semibold mb-4 text-gray-700">Add New Task</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             <input
@@ -58,7 +58,7 @@ const Reports = () => {
               name="task"
               value={newReport.task}
               onChange={handleInputChange}
-              placeholder="Report Name"
+              placeholder="Task Name"
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
@@ -88,7 +88,7 @@ const Reports = () => {
             className="flex items-center justify-center w-full md:w-auto px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-300"
           >
             <PlusCircle className="w-5 h-5 mr-2" />
-            Add Report
+            Add Task
           </button>
         </form>
       </div>
@@ -128,4 +128,4 @@ const Reports = () => {
   );
 };
 
-export default Reports;
+export default Task;

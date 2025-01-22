@@ -1,9 +1,10 @@
 import Navbar from '@/components/Navbar'
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import User from './otherPages/User'
-import TaskReports from './reports/Reports'
 import Home from './home/Home'
+import Reports from './reports/Reports'
+import Task from './task/Task'
+import NotFound from './notFound/NotFound'
 
 const Main = () => {
   return (
@@ -11,8 +12,9 @@ const Main = () => {
     <Navbar />
     <Routes>
       <Route path='/' element={<Home />} />
-      <Route path='/other/userlist' element={<User />} />
-      <Route path='/reports' element={<TaskReports />} />
+      <Route path='/reports' element={<Reports />} />
+      <Route path='/tasks' element={<Task />} />
+      <Route path='*' element={<NotFound />} />
     </Routes>
     </>
   )
