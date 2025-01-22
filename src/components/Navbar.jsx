@@ -15,7 +15,6 @@ const Navbar = () => {
 
   const handleMenuClick = () => {
     setshowMenu((prev) => !prev);
-    setShowNewTask(false);
   };
 
   return (

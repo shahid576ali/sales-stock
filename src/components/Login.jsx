@@ -14,7 +14,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [isLoad, setIsLoad] = useState(false)
+  const [isLoad, setIsLoad] = useState(false);
   const navigate = useNavigate();
 
   const { userDetails, apiKey } = useContext(StoreContext);
@@ -25,10 +25,10 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setIsLoad(true)
-    
+    setIsLoad(true);
+
     try {
-      const response = await axios.post(apiKey+"/user/signin", {
+      const response = await axios.post(apiKey + "/user/signin", {
         email,
         password,
       });
@@ -46,11 +46,11 @@ const Login = () => {
         setTimeout(() => {
           navigate("/");
           setIsLoading(false);
-          setIsLoad(false)
+          setIsLoad(false);
         }, 3000);
       } else {
         setIsLoading(false);
-        setIsLoad(false)
+        setIsLoad(false);
         toast.error(data.message, {
           position: "top-right",
           autoClose: 3000,
@@ -58,7 +58,7 @@ const Login = () => {
       }
     } catch (error) {
       setIsLoading(false);
-      setIsLoad(false)
+      setIsLoad(false);
       toast.error(error.response?.data?.message || "An error occurred.", {
         position: "top-right",
         autoClose: 3000,
@@ -99,7 +99,11 @@ const Login = () => {
               autoComplete="off"
             />
             {!showPass ? (
-              <Eye onClick={handlePass} className="cursor-pointer" color="gray" />
+              <Eye
+                onClick={handlePass}
+                className="cursor-pointer"
+                color="gray"
+              />
             ) : (
               <EyeOff
                 onClick={handlePass}
@@ -117,9 +121,12 @@ const Login = () => {
           </a>
           <button
             type="submit"
-            className="text-white w-20 py-[6px] rounded-[6px] bg-blue-400 flex items-center justify-center"
+            disabled={isLoad}
+            className={`text-white w-20 py-[6px] rounded-[6px] ${
+              isLoad ? "bg-blue-300" : "bg-blue-500"
+            } flex items-center justify-center`}
           >
-            {isLoad?<Load /> : "Sign In"}
+            {isLoad ? <Load /> : "Sign In"}
           </button>
           <p>
             Create an Account{" "}

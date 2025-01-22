@@ -22,7 +22,7 @@ const SignUp = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const {apiKey} = useContext(StoreContext);
+  const { apiKey } = useContext(StoreContext);
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -54,30 +54,28 @@ const SignUp = () => {
       setError("Password must contain a capital letter (A-Z)");
       return;
     }
-    setIsLoading(true)
+    setIsLoading(true);
 
     if (!/[!@#$%^&*()_+=-?><{}]/.test(formData.password)) {
-      setError("Password must contain a special character (!@#$%^&*()_+=-?><{})");
+      setError(
+        "Password must contain a special character (!@#$%^&*()_+=-?><{})"
+      );
       return;
     }
 
     try {
-      const response = await axios.post(
-        apiKey+"/user/signup",
-        formData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await axios.post(apiKey + "/user/signup", formData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
       const data = response.data;
-      
+
       if (data.success === false) {
         console.log(data);
         toast.error(data.message);
-        return
+        return;
       }
       toast.success(data.message);
       setIsLoading(false);
@@ -85,7 +83,7 @@ const SignUp = () => {
         navigate("/login");
       }, 3000);
     } catch (error) {
-      setIsLoading(false)
+      setIsLoading(false);
       console.error(error);
       toast.error(error.message);
     }
@@ -205,10 +203,14 @@ const SignUp = () => {
           </div>
           <button
             type="submit"
-            className="text-white w-20 py-[6px] rounded-[6px] bg-blue-400 flex items-center justify-center"
+            disabled={isLoading}
+            className={`text-white w-20 py-[6px] rounded-[6px] ${
+              isLoading ? "bg-blue-300" : "bg-blue-500"
+            } flex items-center justify-center`}
           >
-            {isLoading?<Load /> : "Sign Up"}
+            {isLoading ? <Load /> : "Sign In"}
           </button>
+
           <p>
             Already have an Account?{" "}
             <Link to={"/login"} className="text-blue-500">
