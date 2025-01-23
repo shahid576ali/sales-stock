@@ -2,12 +2,11 @@ import {
   Box,
   Copy,
   CreditCard,
-  Gem,
   Layers,
   Menu,
   NotepadText,
-  ShoppingCartIcon,
   StickyNote,
+  UsersRound,
 } from "lucide-react";
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
@@ -102,11 +101,11 @@ const Sidebar = () => {
           </Link>
 
           <Link
-            to={"/copy"}
+            to={"/users"}
             className="hover:text-orange-400 flex items-center w-full text-gray-500 gap-6 cursor-pointer mb-3"
           >
-            <Gem size={22} />
-            {!sidebar && <p>Sales</p>}
+            <UsersRound size={22} />
+            {!sidebar && <p>Users</p>}
           </Link>
 
           <Link

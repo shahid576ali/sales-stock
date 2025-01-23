@@ -5,6 +5,7 @@ import Home from './home/Home'
 import Reports from './reports/Reports'
 import Task from './task/Task'
 import NotFound from './notFound/NotFound'
+import User from './users/User'
 
 const Main = () => {
   return (
@@ -14,6 +15,7 @@ const Main = () => {
       <Route path='/' element={<Home />} />
       <Route path='/reports' element={<Reports />} />
       <Route path='/tasks' element={<Task />} />
+      <Route path='/users' element={<User />} />
       <Route path='*' element={<NotFound />} />
     </Routes>
     </>
