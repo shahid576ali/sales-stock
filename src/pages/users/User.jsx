@@ -157,7 +157,7 @@ const User = () => {
           </tbody>
         </table>
       </div>
-      {sortedUsers.length === 0 && <p className="text-center text-gray-500 mt-4">No users found</p>}
+      {sortedUsers.length === 0 && <p className="text-center text-red-400 mt-4">No users found</p>}
     </div>
   )
 }
