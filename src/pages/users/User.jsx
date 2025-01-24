@@ -7,7 +7,6 @@ const User = () => {
   const [sortColumn, setSortColumn] = useState("name")
   const [sortDirection, setSortDirection] = useState("asc")
 
-  // Mock user data (in a real app, this would come from an API)
   useEffect(() => {
     const mockUsers = [
       {

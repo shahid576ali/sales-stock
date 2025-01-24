@@ -13,6 +13,7 @@ const Login = () => {
   const [showPass, setShowPass] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false); // State for Remember Me
   const [isLoading, setIsLoading] = useState(false);
   const [isLoad, setIsLoad] = useState(false);
   const navigate = useNavigate();
@@ -31,6 +32,7 @@ const Login = () => {
       const response = await axios.post(apiKey + "/user/signin", {
         email,
         password,
+        rememberMe, // Sending Remember Me value
       });
       const data = response.data;
       if (data.success) {
@@ -87,9 +89,9 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <div className="flex w-full border h-[41px] items-center px-2 justify-between border-gray-400 rounded-[8px]">
+          <div className="flex w-full border h-[41px] items-center justify-between border-gray-400 rounded-[8px]">
             <input
-              className="w-full outline-none h-full"
+              className="w-full rounded-[8px] px-2 outline-none h-full"
               type={showPass ? "text" : "password"}
               name="password"
               placeholder="Password"
@@ -113,7 +115,13 @@ const Login = () => {
             )}
           </div>
           <div className="flex gap-2 items-center">
-            <input className="mt-1" type="checkbox" name="remember" />
+            <input
+              className="mt-1"
+              type="checkbox"
+              name="remember"
+              checked={rememberMe}
+              onChange={(e) => setRememberMe(e.target.checked)} // Update Remember Me state
+            />
             <p>Remember Me</p>
           </div>
           <a className="text-blue-500 text-right" href="#">
@@ -123,7 +131,7 @@ const Login = () => {
             type="submit"
             disabled={isLoad}
             className={`text-white w-20 py-[6px] rounded-[6px] ${
-              isLoad ? "bg-blue-300" : "bg-blue-500"
+              isLoad ? "bg-blue-400" : "bg-blue-500"
             } flex items-center justify-center`}
           >
             {isLoad ? <Load /> : "Sign In"}
