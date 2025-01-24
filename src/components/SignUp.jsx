@@ -96,6 +96,7 @@ const SignUp = () => {
         <form
           className="flex flex-col items-left w-[90%] md:w-[55%] justify-center lg:gap-4 gap-2 h-[92%]"
           onSubmit={handleSubmit}
+          autoComplete="off"
         >
           <h1 className="text-3xl text-gray-500 font-[600]">Sign Up</h1>
           <p className="text-gray-500">Create your account.</p>
@@ -128,6 +129,7 @@ const SignUp = () => {
               value={formData.email}
               onChange={handleInputChange}
               required
+              autocomplete="off"
             />
             <input
               className="border border-gray-400 outline-none py-2 px-2 rounded-[8px]"
@@ -154,6 +156,7 @@ const SignUp = () => {
                 value={formData.password}
                 onChange={handleInputChange}
                 required
+                autocomplete="off"
               />
               {!showPass ? (
                 <Eye
@@ -178,6 +181,7 @@ const SignUp = () => {
                 value={formData.confirmPassword}
                 onChange={handleInputChange}
                 required
+                autocomplete="off"
               />
               {!showPass ? (
                 <Eye
